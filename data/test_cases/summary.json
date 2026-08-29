@@ -1,0 +1,62 @@
+[
+  {
+    "case_id": "case_01",
+    "expected_status": "MATCHED",
+    "expected_issue_codes": [],
+    "reason": "All invoice items match the purchase order and goods receipt."
+  },
+  {
+    "case_id": "case_02",
+    "expected_status": "MATCHED",
+    "expected_issue_codes": [],
+    "reason": "All invoice items match the purchase order and goods receipt."
+  },
+  {
+    "case_id": "case_03",
+    "expected_status": "MATCHED",
+    "expected_issue_codes": [],
+    "reason": "All invoice items match the purchase order and goods receipt."
+  },
+  {
+    "case_id": "case_04",
+    "expected_status": "MATCHED",
+    "expected_issue_codes": [],
+    "reason": "All invoice items match the purchase order and goods receipt."
+  },
+  {
+    "case_id": "case_05",
+    "expected_status": "REVIEW_REQUIRED",
+    "expected_issue_codes": ["QTY_MISMATCH"],
+    "reason": "Invoice quantity exceeds the goods receipt quantity."
+  },
+  {
+    "case_id": "case_06",
+    "expected_status": "REVIEW_REQUIRED",
+    "expected_issue_codes": ["QTY_MISMATCH"],
+    "reason": "Invoice quantity exceeds the goods receipt quantity."
+  },
+  {
+    "case_id": "case_07",
+    "expected_status": "REVIEW_REQUIRED",
+    "expected_issue_codes": ["PRICE_MISMATCH"],
+    "reason": "Invoice unit price differs from the purchase order unit price."
+  },
+  {
+    "case_id": "case_08",
+    "expected_status": "REVIEW_REQUIRED",
+    "expected_issue_codes": ["PRICE_MISMATCH"],
+    "reason": "Invoice unit price differs from the purchase order unit price."
+  },
+  {
+    "case_id": "case_09",
+    "expected_status": "REVIEW_REQUIRED",
+    "expected_issue_codes": ["UNKNOWN_ITEM"],
+    "reason": "Invoice contains a SKU not found in the purchase order."
+  },
+  {
+    "case_id": "case_10",
+    "expected_status": "REVIEW_REQUIRED",
+    "expected_issue_codes": ["MISSING_FIELD"],
+    "reason": "Goods receipt object is missing required fields."
+  }
+]

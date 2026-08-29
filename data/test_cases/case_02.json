@@ -1,0 +1,56 @@
+{
+  "purchase_order": {
+    "po_id": "PO-1002",
+    "vendor": "Harbor Supply Co.",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-201",
+        "description": "Safety Gloves Bulk",
+        "quantity": 12,
+        "unit_price": 7.75
+      },
+      {
+        "sku": "SKU-202",
+        "description": "Work Boots Size 9",
+        "quantity": 4,
+        "unit_price": 62.0
+      }
+    ]
+  },
+  "goods_receipt": {
+    "receipt_id": "GR-1002",
+    "po_id": "PO-1002",
+    "received_items": [
+      {
+        "sku": "SKU-201",
+        "quantity": 12
+      },
+      {
+        "sku": "SKU-202",
+        "quantity": 4
+      }
+    ]
+  },
+  "invoice": {
+    "invoice_id": "INV-1002",
+    "po_id": "PO-1002",
+    "vendor": "Harbor Supply Co.",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-201",
+        "description": "Safety Gloves Bulk",
+        "quantity": 12,
+        "unit_price": 7.75
+      },
+      {
+        "sku": "SKU-202",
+        "description": "Work Boots Size 9",
+        "quantity": 4,
+        "unit_price": 62.0
+      }
+    ],
+    "subtotal": 341.0
+  }
+}

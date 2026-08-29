@@ -1,0 +1,56 @@
+{
+  "purchase_order": {
+    "po_id": "PO-1008",
+    "vendor": "Crestline Office",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-801",
+        "description": "Ergonomic Chair",
+        "quantity": 8,
+        "unit_price": 245.0
+      },
+      {
+        "sku": "SKU-802",
+        "description": "Standing Desk",
+        "quantity": 2,
+        "unit_price": 880.0
+      }
+    ]
+  },
+  "goods_receipt": {
+    "receipt_id": "GR-1008",
+    "po_id": "PO-1008",
+    "received_items": [
+      {
+        "sku": "SKU-801",
+        "quantity": 8
+      },
+      {
+        "sku": "SKU-802",
+        "quantity": 2
+      }
+    ]
+  },
+  "invoice": {
+    "invoice_id": "INV-1008",
+    "po_id": "PO-1008",
+    "vendor": "Crestline Office",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-801",
+        "description": "Ergonomic Chair",
+        "quantity": 8,
+        "unit_price": 230.0
+      },
+      {
+        "sku": "SKU-802",
+        "description": "Standing Desk",
+        "quantity": 2,
+        "unit_price": 880.0
+      }
+    ],
+    "subtotal": 3600.0
+  }
+}

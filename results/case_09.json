@@ -1,0 +1,16 @@
+{
+  "case_id": "case_09",
+  "status": "REVIEW_REQUIRED",
+  "issues": [
+    {
+      "issue_code": "UNKNOWN_ITEM",
+      "message": "Invoice item 'SKU-903' does not exist in the purchase order.",
+      "evidence_paths": [
+        "invoice.items[1].sku",
+        "purchase_order.items"
+      ]
+    }
+  ],
+  "input_file": "C:\\Users\\hp\\hackathon\\invoiceguard\\data\\test_cases\\case_09.json",
+  "result_file": "C:\\Users\\hp\\hackathon\\invoiceguard\\results\\case_09.json"
+}

@@ -1,0 +1,56 @@
+{
+  "purchase_order": {
+    "po_id": "PO-1009",
+    "vendor": "Prime Medical Supply",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-901",
+        "description": "Surgical Mask Box",
+        "quantity": 30,
+        "unit_price": 12.5
+      },
+      {
+        "sku": "SKU-902",
+        "description": "Disinfectant Wipes",
+        "quantity": 20,
+        "unit_price": 9.75
+      }
+    ]
+  },
+  "goods_receipt": {
+    "receipt_id": "GR-1009",
+    "po_id": "PO-1009",
+    "received_items": [
+      {
+        "sku": "SKU-901",
+        "quantity": 30
+      },
+      {
+        "sku": "SKU-902",
+        "quantity": 20
+      }
+    ]
+  },
+  "invoice": {
+    "invoice_id": "INV-1009",
+    "po_id": "PO-1009",
+    "vendor": "Prime Medical Supply",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-901",
+        "description": "Surgical Mask Box",
+        "quantity": 30,
+        "unit_price": 12.5
+      },
+      {
+        "sku": "SKU-903",
+        "description": "Nitrile Gloves Pack",
+        "quantity": 15,
+        "unit_price": 13.0
+      }
+    ],
+    "subtotal": 570.0
+  }
+}

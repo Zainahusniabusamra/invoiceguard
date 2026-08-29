@@ -1,0 +1,56 @@
+{
+  "purchase_order": {
+    "po_id": "PO-1001",
+    "vendor": "Northwind Industrial",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-101",
+        "description": "Atlas Drill Bit Set",
+        "quantity": 8,
+        "unit_price": 24.5
+      },
+      {
+        "sku": "SKU-102",
+        "description": "Torque Wrench 1/2 inch",
+        "quantity": 3,
+        "unit_price": 89.0
+      }
+    ]
+  },
+  "goods_receipt": {
+    "receipt_id": "GR-1001",
+    "po_id": "PO-1001",
+    "received_items": [
+      {
+        "sku": "SKU-101",
+        "quantity": 8
+      },
+      {
+        "sku": "SKU-102",
+        "quantity": 3
+      }
+    ]
+  },
+  "invoice": {
+    "invoice_id": "INV-1001",
+    "po_id": "PO-1001",
+    "vendor": "Northwind Industrial",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-101",
+        "description": "Atlas Drill Bit Set",
+        "quantity": 8,
+        "unit_price": 24.5
+      },
+      {
+        "sku": "SKU-102",
+        "description": "Torque Wrench 1/2 inch",
+        "quantity": 3,
+        "unit_price": 89.0
+      }
+    ],
+    "subtotal": 463.0
+  }
+}

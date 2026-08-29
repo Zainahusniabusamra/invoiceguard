@@ -1,0 +1,34 @@
+{
+  "purchase_order": {
+    "po_id": "PO-1010",
+    "vendor": "Evergreen Foods",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-1001",
+        "description": "Organic Apples 10lb",
+        "quantity": 12,
+        "unit_price": 18.0
+      }
+    ]
+  },
+  "goods_receipt": {
+    "receipt_id": "GR-1010",
+    "po_id": "PO-1010"
+  },
+  "invoice": {
+    "invoice_id": "INV-1010",
+    "po_id": "PO-1010",
+    "vendor": "Evergreen Foods",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-1001",
+        "description": "Organic Apples 10lb",
+        "quantity": 12,
+        "unit_price": 18.0
+      }
+    ],
+    "subtotal": 216.0
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "purchase_order": {
+    "po_id": "PO-1006",
+    "vendor": "Summit Packaging",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-601",
+        "description": "Corrugated Box 18x18",
+        "quantity": 50,
+        "unit_price": 3.1
+      },
+      {
+        "sku": "SKU-602",
+        "description": "Bubble Wrap Roll",
+        "quantity": 6,
+        "unit_price": 18.5
+      }
+    ]
+  },
+  "goods_receipt": {
+    "receipt_id": "GR-1006",
+    "po_id": "PO-1006",
+    "received_items": [
+      {
+        "sku": "SKU-601",
+        "quantity": 35
+      },
+      {
+        "sku": "SKU-602",
+        "quantity": 4
+      }
+    ]
+  },
+  "invoice": {
+    "invoice_id": "INV-1006",
+    "po_id": "PO-1006",
+    "vendor": "Summit Packaging",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-601",
+        "description": "Corrugated Box 18x18",
+        "quantity": 50,
+        "unit_price": 3.1
+      },
+      {
+        "sku": "SKU-602",
+        "description": "Bubble Wrap Roll",
+        "quantity": 6,
+        "unit_price": 18.5
+      }
+    ],
+    "subtotal": 266.0
+  }
+}

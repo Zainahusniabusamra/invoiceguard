@@ -1,0 +1,40 @@
+{
+  "purchase_order": {
+    "po_id": "PO-1005",
+    "vendor": "MotionWorks Logistics",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-501",
+        "description": "Conveyor Belt Roll",
+        "quantity": 4,
+        "unit_price": 220.0
+      }
+    ]
+  },
+  "goods_receipt": {
+    "receipt_id": "GR-1005",
+    "po_id": "PO-1005",
+    "received_items": [
+      {
+        "sku": "SKU-501",
+        "quantity": 2
+      }
+    ]
+  },
+  "invoice": {
+    "invoice_id": "INV-1005",
+    "po_id": "PO-1005",
+    "vendor": "MotionWorks Logistics",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-501",
+        "description": "Conveyor Belt Roll",
+        "quantity": 4,
+        "unit_price": 220.0
+      }
+    ],
+    "subtotal": 880.0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "case_id": "case_06",
+  "status": "REVIEW_REQUIRED",
+  "issues": [
+    {
+      "issue_code": "QTY_MISMATCH",
+      "message": "Invoice quantity 50.0 for SKU 'SKU-601' exceeds the received quantity 35.0.",
+      "evidence_paths": [
+        "invoice.items[0].quantity",
+        "goods_receipt.received_items[0].quantity"
+      ]
+    },
+    {
+      "issue_code": "QTY_MISMATCH",
+      "message": "Invoice quantity 6.0 for SKU 'SKU-602' exceeds the received quantity 4.0.",
+      "evidence_paths": [
+        "invoice.items[1].quantity",
+        "goods_receipt.received_items[1].quantity"
+      ]
+    }
+  ],
+  "input_file": "C:\\Users\\hp\\hackathon\\invoiceguard\\data\\test_cases\\case_06.json",
+  "result_file": "C:\\Users\\hp\\hackathon\\invoiceguard\\results\\case_06.json"
+}

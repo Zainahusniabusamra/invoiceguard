@@ -1,0 +1,16 @@
+{
+  "case_id": "case_07",
+  "status": "REVIEW_REQUIRED",
+  "issues": [
+    {
+      "issue_code": "PRICE_MISMATCH",
+      "message": "Invoice unit price 20.0 for SKU 'SKU-701' differs from the purchase order price 18.0.",
+      "evidence_paths": [
+        "invoice.items[0].unit_price",
+        "purchase_order.items[0].unit_price"
+      ]
+    }
+  ],
+  "input_file": "C:\\Users\\hp\\hackathon\\invoiceguard\\data\\test_cases\\case_07.json",
+  "result_file": "C:\\Users\\hp\\hackathon\\invoiceguard\\results\\case_07.json"
+}

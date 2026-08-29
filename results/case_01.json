@@ -1,0 +1,7 @@
+{
+  "case_id": "case_01",
+  "status": "MATCHED",
+  "issues": [],
+  "input_file": "C:\\Users\\hp\\hackathon\\invoiceguard\\data\\test_cases\\case_01.json",
+  "result_file": "C:\\Users\\hp\\hackathon\\invoiceguard\\results\\case_01.json"
+}

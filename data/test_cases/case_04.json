@@ -1,0 +1,72 @@
+{
+  "purchase_order": {
+    "po_id": "PO-1004",
+    "vendor": "BluePeak Manufacturing",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-401",
+        "description": "Hydraulic Hose 10m",
+        "quantity": 6,
+        "unit_price": 58.25
+      },
+      {
+        "sku": "SKU-402",
+        "description": "Seal Kit",
+        "quantity": 2,
+        "unit_price": 120.0
+      },
+      {
+        "sku": "SKU-403",
+        "description": "Valve Handle",
+        "quantity": 15,
+        "unit_price": 12.8
+      }
+    ]
+  },
+  "goods_receipt": {
+    "receipt_id": "GR-1004",
+    "po_id": "PO-1004",
+    "received_items": [
+      {
+        "sku": "SKU-401",
+        "quantity": 6
+      },
+      {
+        "sku": "SKU-402",
+        "quantity": 2
+      },
+      {
+        "sku": "SKU-403",
+        "quantity": 15
+      }
+    ]
+  },
+  "invoice": {
+    "invoice_id": "INV-1004",
+    "po_id": "PO-1004",
+    "vendor": "BluePeak Manufacturing",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-401",
+        "description": "Hydraulic Hose 10m",
+        "quantity": 6,
+        "unit_price": 58.25
+      },
+      {
+        "sku": "SKU-402",
+        "description": "Seal Kit",
+        "quantity": 2,
+        "unit_price": 120.0
+      },
+      {
+        "sku": "SKU-403",
+        "description": "Valve Handle",
+        "quantity": 15,
+        "unit_price": 12.8
+      }
+    ],
+    "subtotal": 781.5
+  }
+}

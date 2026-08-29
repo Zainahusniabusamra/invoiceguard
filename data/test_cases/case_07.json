@@ -1,0 +1,40 @@
+{
+  "purchase_order": {
+    "po_id": "PO-1007",
+    "vendor": "Aster Labs",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-701",
+        "description": "Digital Thermometer",
+        "quantity": 20,
+        "unit_price": 18.0
+      }
+    ]
+  },
+  "goods_receipt": {
+    "receipt_id": "GR-1007",
+    "po_id": "PO-1007",
+    "received_items": [
+      {
+        "sku": "SKU-701",
+        "quantity": 20
+      }
+    ]
+  },
+  "invoice": {
+    "invoice_id": "INV-1007",
+    "po_id": "PO-1007",
+    "vendor": "Aster Labs",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-701",
+        "description": "Digital Thermometer",
+        "quantity": 20,
+        "unit_price": 20.0
+      }
+    ],
+    "subtotal": 400.0
+  }
+}

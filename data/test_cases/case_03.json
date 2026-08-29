@@ -1,0 +1,56 @@
+{
+  "purchase_order": {
+    "po_id": "PO-1003",
+    "vendor": "VoltEdge Electric",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-301",
+        "description": "Industrial Cable Reel",
+        "quantity": 5,
+        "unit_price": 140.0
+      },
+      {
+        "sku": "SKU-302",
+        "description": "Power Strip 8-Port",
+        "quantity": 10,
+        "unit_price": 28.5
+      }
+    ]
+  },
+  "goods_receipt": {
+    "receipt_id": "GR-1003",
+    "po_id": "PO-1003",
+    "received_items": [
+      {
+        "sku": "SKU-301",
+        "quantity": 5
+      },
+      {
+        "sku": "SKU-302",
+        "quantity": 10
+      }
+    ]
+  },
+  "invoice": {
+    "invoice_id": "INV-1003",
+    "po_id": "PO-1003",
+    "vendor": "VoltEdge Electric",
+    "currency": "USD",
+    "items": [
+      {
+        "sku": "SKU-301",
+        "description": "Industrial Cable Reel",
+        "quantity": 5,
+        "unit_price": 140.0
+      },
+      {
+        "sku": "SKU-302",
+        "description": "Power Strip 8-Port",
+        "quantity": 10,
+        "unit_price": 28.5
+      }
+    ],
+    "subtotal": 985.0
+  }
+}
