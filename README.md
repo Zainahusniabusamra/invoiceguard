@@ -16,6 +16,17 @@ The system first performs a deterministic audit to identify factual discrepancie
 
 The AI explanation is then validated to ensure that it is tied to concrete evidence from the finding rather than being a generic or unrelated response.
 
+## Intended User and Problem
+
+**Intended User:**
+Finance and accounts-payable reviewers who need to review invoices before payment.
+
+**Current Bottleneck:**
+A deterministic audit can identify that an invoice contains a discrepancy, but raw issue codes such as `QTY_MISMATCH` or `PRICE_MISMATCH` do not explain why the discrepancy matters or what the reviewer should investigate next.
+
+**Why It Matters:**
+Finance reviewers need to quickly understand what went wrong, verify the underlying evidence, and decide what action should be taken. InvoiceGuard adds an evidence-grounded explanation layer without allowing the AI to make the financial decision itself.
+
 ## How It Works
 
 ```text
@@ -47,6 +58,36 @@ InvoiceGuard currently detects:
 * **Price mismatches** — invoice unit price differs from the purchase order
 * **Unknown items** — invoice item does not exist in the purchase order
 * **Missing required fields** — required purchasing or receiving data is missing
+
+## Baseline vs Advanced Solution
+
+### Baseline
+
+The baseline is a deterministic Python audit engine.
+
+It compares the invoice, purchase order, and goods receipt and produces structured findings containing:
+
+* Status
+* Issue codes
+* Human-readable messages
+* Evidence paths
+
+The baseline does not use an LLM to determine whether an invoice is correct.
+
+### Advanced Solution
+
+The advanced solution adds an evidence-grounded Gemini explanation layer on top of the deterministic audit.
+
+For every `REVIEW_REQUIRED` case, the agent:
+
+1. Receives the structured audit finding.
+2. Explains the discrepancy in plain language.
+3. References concrete evidence such as SKUs, quantities, and prices.
+4. Recommends a practical next action.
+5. Produces a concise explanation for a finance reviewer.
+6. Validates the explanation against the original audit evidence.
+
+This creates a meaningful improvement over the baseline: the system moves from simply reporting **what is wrong** to explaining **why it matters and what should be checked next**.
 
 ## AI Agent
 
@@ -101,7 +142,7 @@ Ran 8 tests
 OK
 ```
 
-The agent comparison also confirms:
+The agent comparison confirms:
 
 ```text
 Total Cases: 10
@@ -109,6 +150,56 @@ Matched: 4
 Review Required: 6
 Cases with Clear Next Actions: 6/6
 ```
+
+### Actionability Improvement
+
+| Metric                                       | Baseline |   Advanced Agent |
+| -------------------------------------------- | -------: | ---------------: |
+| Cases with clear human-actionable next step  |     0/10 | 6/6 review cases |
+| Cases explaining why the discrepancy matters |     0/10 | 6/6 review cases |
+| Average explanation length                   |  0 words |       ~136 words |
+
+The comparison results are generated automatically in:
+
+```text
+results/comparison_table.md
+```
+
+## Improvement Changelog
+
+### Iteration 1 — Deterministic Baseline
+
+**Change:** Built a deterministic invoice audit engine before introducing AI.
+
+**Evidence:** The initial audit logic can classify the 10 test cases into `MATCHED` and `REVIEW_REQUIRED` states and identify concrete issue codes.
+
+**Decision:** Keep factual invoice validation deterministic so that the core financial checks remain predictable and testable.
+
+### Iteration 2 — Evidence-Grounded AI Explanations
+
+**Change:** Added Gemini to explain findings produced by the deterministic audit.
+
+**Evidence:** The baseline identified discrepancies correctly but provided primarily structured issue codes and messages. These did not provide a manager-friendly explanation or recommended next step.
+
+**Decision:** Use the LLM only as an explanation and decision-support layer rather than allowing it to determine invoice correctness.
+
+### Iteration 3 — Explanation Validation
+
+**Change:** Added validation for generated AI explanations.
+
+**Evidence:** An LLM can produce a fluent explanation that is not necessarily grounded in the actual finding.
+
+**Decision:** Reject API fallback responses and explanations that fail to reference concrete evidence from the audit finding.
+
+### Iteration 4 — Multi-Case Evaluation and Comparison
+
+**Change:** Added automated comparison reporting across all 10 cases.
+
+**Evidence:** Individual outputs do not clearly demonstrate whether the advanced solution improves usability over the baseline.
+
+**Decision:** Measure the difference between the baseline and AI-assisted solution using actionability and explanation coverage.
+
+**Result:** All 6 review cases received a clear next action, compared with 0/10 baseline cases.
 
 ## Example
 
@@ -158,9 +249,17 @@ invoiceguard/
 └── README.md
 ```
 
-## Installation
+## Reproduction Guide
 
-Clone the repository and install the dependencies:
+The project is designed to run from a clean Python environment.
+
+### Requirements
+
+* Python 3.x
+* Internet connection for Gemini API calls
+* Gemini API key for the advanced AI solution
+
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -174,27 +273,54 @@ GEMINI_API_KEY=your_key_here
 
 **Never commit your real API key.**
 
-## Usage
-
-### Run the baseline audit
+### 1. Run the baseline
 
 ```bash
 python src/baseline.py --all
 ```
 
-### Test the Gemini connection
+Expected result:
+
+```text
+10 cases processed
+4 MATCHED
+6 REVIEW_REQUIRED
+```
+
+The structured results are written to:
+
+```text
+results/case_01.json
+...
+results/case_10.json
+```
+
+### 2. Run automated tests
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+Expected result:
+
+```text
+Ran 8 tests
+OK
+```
+
+### 3. Test the Gemini connection
 
 ```bash
 python src/agent.py --test
 ```
 
-### Explain a single finding
+### 4. Generate an explanation for one finding
 
 ```bash
 python src/agent.py results/case_05.json
 ```
 
-### Generate the full AI audit report
+### 5. Generate the full AI audit report
 
 ```bash
 python src/agent.py --full
@@ -206,7 +332,7 @@ The full report is written to:
 results/full_report.txt
 ```
 
-### Compare baseline and AI results
+### 6. Compare baseline and advanced solution
 
 ```bash
 python src/compare_results.py
@@ -218,11 +344,22 @@ The comparison is written to:
 results/comparison_table.md
 ```
 
-### Run automated tests
+Expected headline result:
 
-```bash
-python -m unittest discover -s tests -v
+```text
+Total Cases: 10
+Matched: 4
+Review Required: 6
+Cases with Clear Next Actions: 6/6
 ```
+
+### Runtime and Cost
+
+The deterministic baseline and automated tests run locally and complete in seconds on a normal development machine.
+
+The AI explanation stage requires Gemini API calls for review cases. API cost depends on the selected Gemini model and the number of findings processed.
+
+No production infrastructure or database is required for this prototype.
 
 ## Technology Stack
 
@@ -264,6 +401,34 @@ This prototype operates on structured JSON test data. A production system would 
 * More extensive financial validation rules
 * Secure secret management
 * Human approval workflows
+
+## Main Failure Mode
+
+The main failure mode is an AI-generated explanation that sounds plausible but is not grounded in the actual audit evidence.
+
+InvoiceGuard mitigates this risk by keeping factual validation deterministic and validating generated explanations against concrete evidence before including them in the final report.
+
+A second important limitation is that the current prototype uses structured test data rather than extracting information from real invoice documents.
+
+## Hot Take
+
+**LLMs should not decide whether an invoice is financially correct.**
+
+They are most valuable here as an explanation and decision-support layer on top of deterministic validation.
+
+The strongest architecture is therefore:
+
+```text
+Deterministic checks
+        ↓
+Structured evidence
+        ↓
+AI explanation
+        ↓
+Evidence validation
+        ↓
+Human decision
+```
 
 ## Status
 
