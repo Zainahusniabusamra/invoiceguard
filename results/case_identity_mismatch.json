@@ -1,0 +1,17 @@
+{
+  "case_id": "case_identity_mismatch",
+  "status": "REVIEW_REQUIRED",
+  "issues": [
+    {
+      "issue_code": "DOCUMENT_IDENTITY_MISMATCH",
+      "message": "Document po_id values do not match: purchase_order=PO-1001, goods_receipt=PO-1001, invoice=PO-9999.",
+      "evidence_paths": [
+        "purchase_order.po_id",
+        "goods_receipt.po_id",
+        "invoice.po_id"
+      ]
+    }
+  ],
+  "input_file": "C:/Users/hp/AppData/Local/Temp/tmpf2tl_eqq/case_identity_mismatch.json",
+  "result_file": "results/case_identity_mismatch.json"
+}

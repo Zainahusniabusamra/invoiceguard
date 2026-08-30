@@ -2,6 +2,6 @@
   "case_id": "case_02",
   "status": "MATCHED",
   "issues": [],
-  "input_file": "C:\\Users\\hp\\hackathon\\invoiceguard\\data\\test_cases\\case_02.json",
-  "result_file": "C:\\Users\\hp\\hackathon\\invoiceguard\\results\\case_02.json"
+  "input_file": "data/test_cases/case_02.json",
+  "result_file": "results/case_02.json"
 }

@@ -19,6 +19,6 @@
       ]
     }
   ],
-  "input_file": "C:\\Users\\hp\\hackathon\\invoiceguard\\data\\test_cases\\case_06.json",
-  "result_file": "C:\\Users\\hp\\hackathon\\invoiceguard\\results\\case_06.json"
+  "input_file": "data/test_cases/case_06.json",
+  "result_file": "results/case_06.json"
 }

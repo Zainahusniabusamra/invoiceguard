@@ -1,5 +1,6 @@
 import json
 import sys
+import tempfile
 from pathlib import Path
 import unittest
 from unittest.mock import patch
@@ -86,6 +87,50 @@ class ValidatorTests(unittest.TestCase):
             explanation = agent.explain_finding(finding)
         self.assertIn("Insufficient evidence", explanation)
         self.assertFalse(agent.validate_explanation(finding, explanation)["is_valid"])
+
+    def test_document_identity_mismatch_detected(self):
+        payload = {
+            "purchase_order": {
+                "po_id": "PO-1001",
+                "vendor": "Acme Supply",
+                "currency": "USD",
+                "items": [{
+                    "sku": "SKU-555",
+                    "description": "Widget",
+                    "quantity": 2,
+                    "unit_price": 9.5
+                }]
+            },
+            "goods_receipt": {
+                "receipt_id": "GR-1001",
+                "po_id": "PO-1001",
+                "received_items": [{
+                    "sku": "SKU-555",
+                    "quantity": 2
+                }]
+            },
+            "invoice": {
+                "invoice_id": "INV-1001",
+                "po_id": "PO-9999",
+                "vendor": "Acme Supply",
+                "currency": "USD",
+                "items": [{
+                    "sku": "SKU-555",
+                    "description": "Widget",
+                    "quantity": 2,
+                    "unit_price": 9.5
+                }],
+                "subtotal": 19.0
+            }
+        }
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            case_path = Path(temp_dir) / "case_identity_mismatch.json"
+            case_path.write_text(json.dumps(payload), encoding="utf-8")
+            result = baseline.run_case(str(case_path))
+
+        self.assertEqual(result["status"], "REVIEW_REQUIRED")
+        self.assertTrue(any(issue["issue_code"] == "DOCUMENT_IDENTITY_MISMATCH" for issue in result["issues"]))
 
 
 if __name__ == '__main__':

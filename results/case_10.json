@@ -8,16 +8,8 @@
       "evidence_paths": [
         "goods_receipt.received_items"
       ]
-    },
-    {
-      "issue_code": "QTY_MISMATCH",
-      "message": "Invoice quantity 12.0 for SKU 'SKU-1001' exceeds the received quantity 0.",
-      "evidence_paths": [
-        "invoice.items[0].quantity",
-        "goods_receipt.received_items[0].quantity"
-      ]
     }
   ],
-  "input_file": "C:\\Users\\hp\\hackathon\\invoiceguard\\data\\test_cases\\case_10.json",
-  "result_file": "C:\\Users\\hp\\hackathon\\invoiceguard\\results\\case_10.json"
+  "input_file": "data/test_cases/case_10.json",
+  "result_file": "results/case_10.json"
 }

@@ -57,6 +57,7 @@ InvoiceGuard currently detects:
 * **Quantity mismatches** — invoiced quantity exceeds received quantity
 * **Price mismatches** — invoice unit price differs from the purchase order
 * **Unknown items** — invoice item does not exist in the purchase order
+* **Document identity mismatches** — PO, goods receipt, and invoice identity fields must agree
 * **Missing required fields** — required purchasing or receiving data is missing
 
 ## Baseline vs Advanced Solution
@@ -112,6 +113,8 @@ The explanation validator checks that:
 * Explanations for findings reference real evidence values.
 * Unrelated or generic explanations are rejected.
 * Substantive explanations are accepted when no concrete evidence values are available.
+
+The deterministic baseline also enforces document identity consistency: purchase order, goods receipt, and invoice identifiers, vendors, and currencies must agree when those values are present. A mismatch produces `DOCUMENT_IDENTITY_MISMATCH` and escalates the case to review.
 
 This helps prevent the AI layer from producing explanations that sound convincing but are not grounded in the actual audit result.
 

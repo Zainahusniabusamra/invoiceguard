@@ -27,20 +27,20 @@ RAW RESULT:
 }
 
 AI EXPLANATION:
-**Audit Summary: Case case_05**
-**Status:** REVIEW_REQUIRED
+Here is the summary of the invoice audit finding for **case_05** (Status: **REVIEW_REQUIRED**):
 
 ### **Issue Overview**
-A **quantity mismatch** was flagged for item **SKU-501**. The invoice charges for more units than were documented as received by the warehouse.
+There is a **quantity mismatch** between the vendor invoice and the warehouse receiving records for **SKU 'SKU-501'**. The vendor has billed us for more units than our receiving team logged as delivered.
 
 ### **Key Evidence**
-* **Invoiced Quantity:** 4.0 units (`invoice.items[0].quantity`)
-* **Received Quantity:** 2.0 units (`goods_receipt.received_items[0].quantity`)
-* **Variance:** Overbilled by 2.0 units
+* **Item / SKU:** SKU-501
+* **Invoice Quantity:** 4.0 units
+* **Received Quantity:** 2.0 units
+* **Discrepancy:** Over-billed by 2.0 units
 
-### **Recommended Next Steps**
-1. **Verify Receiving Records:** Check with the warehouse/receiving team to confirm if only 2.0 units arrived or if a partial shipment was received with the remaining balance backordered.
-2. **Contact Vendor:** If only 2.0 units were delivered, hold payment on the invoice and contact the vendor to request a revised invoice or a credit memo for the 2.0 unreceived units.
+### **Recommended Next Actions**
+1. **Verify Receiving Records:** Check with the warehouse/receiving department to confirm if only 2.0 units of SKU-501 were physically delivered, or if a partial shipment log was missed.
+2. **Contact Vendor / Hold Payment:** If only 2.0 units were delivered, place the invoice on hold and request a revised invoice or a credit memo from the vendor for the 2 billed but unreceived units before approving payment.
 
 --------------------------------------------------------------------------------
 CASE: case_06
@@ -71,32 +71,30 @@ RAW RESULT:
 }
 
 AI EXPLANATION:
-**Audit Summary: Case case_06**
-**Status:** REVIEW_REQUIRED
-
-The invoice for **case_06** requires manual review due to **quantity mismatches** on two line items. The vendor has billed for more units than our warehouse records show as received.
+### Invoice Audit Summary: Case `case_06`
+**Status:** `REVIEW_REQUIRED`
 
 ---
 
-### **Key Findings & Evidence**
+### What Happened
+The invoice cannot be automatically approved because the vendor billed for a higher quantity of items than our warehouse recorded receiving for two separate products:
 
-1. **SKU-601**
-   * **Invoiced Quantity:** 50.0 units
-   * **Received Quantity:** 35.0 units
-   * **Discrepancy:** Over-billed by **15.0 units**
+1. **SKU 'SKU-601':**
+   * **Invoiced:** 50.0 units
+   * **Received:** 35.0 units
+   * **Discrepancy:** Billed for **15.0 extra units**
 
-2. **SKU-602**
-   * **Invoiced Quantity:** 6.0 units
-   * **Received Quantity:** 4.0 units
-   * **Discrepancy:** Over-billed by **2.0 units**
+2. **SKU 'SKU-602':**
+   * **Invoiced:** 6.0 units
+   * **Received:** 4.0 units
+   * **Discrepancy:** Billed for **2.0 extra units**
 
 ---
 
-### **Recommended Next Actions**
-
-1. **Hold Payment:** Pause invoice processing until the discrepancies are resolved.
-2. **Verify Receiving Records:** Check with the receiving/warehouse team to confirm whether a partial delivery was accepted or if receiving logs are missing a second shipment.
-3. **Contact the Vendor:** If receiving logs are correct, notify the vendor of the overcharge and request a revised invoice or a credit memo for the unreceived units prior to payment approval.
+### Recommended Next Actions
+1. **Hold Payment:** Place this invoice on payment hold to prevent overpayment.
+2. **Verify Receiving Records:** Check with the receiving/warehouse team to confirm whether this was a partial shipment (with remaining items expected later) or if the receiving log is missing an update.
+3. **Contact Vendor:** If the receiving records are accurate, contact the vendor to request a corrected invoice or a credit memo for the unreceived items (15 units of SKU-601 and 2 units of SKU-602).
 
 --------------------------------------------------------------------------------
 CASE: case_07
@@ -119,26 +117,26 @@ RAW RESULT:
 }
 
 AI EXPLANATION:
-**Case Summary:** `case_07`
-**Status:** REVIEW REQUIRED
-**Issue:** Price Mismatch
+**Audit Finding Summary: Case case_07**
+
+**Status:** REVIEW_REQUIRED
+**Issue:** Unit Price Mismatch
 
 ---
 
 ### What Happened
-There is a discrepancy between what was billed and what was originally approved for item **SKU-701**:
+There is a price discrepancy on **SKU 'SKU-701'** between the invoice and the purchase order (PO):
+* **Invoice Unit Price:** $20.00 (`invoice.items[0].unit_price`)
+* **Purchase Order Unit Price:** $18.00 (`purchase_order.items[0].unit_price`)
 
-* **Invoice Price:** $20.00 per unit
-* **Purchase Order Price:** $18.00 per unit
-
-The vendor billed $2.00 higher per unit than agreed upon on the purchase order.
+The vendor billed **$2.00 more per unit** than the contracted PO rate.
 
 ---
 
-### Recommended Next Actions
-1. **Hold Payment Approval:** Do not process this invoice until the price difference is resolved.
-2. **Contact Vendor:** Reach out to the vendor to confirm whether the $20.00 price is an error or an unannounced price increase.
-3. **Request Correction:** Ask the vendor to reissue a revised invoice at the agreed-upon rate of $18.00 or provide a credit memo for the difference.
+### Recommended Next Steps
+1. **Hold Payment:** Do not approve or release payment for this invoice until the price difference is resolved.
+2. **Verify Price Approvals:** Check with the procurement/purchasing team to confirm if an updated price of $18.00 to $20.00 was authorized via an amendment or change order.
+3. **Contact Vendor:** If no price change was approved, reach out to the vendor to request a revised invoice reflecting the agreed $18.00 unit price or a credit memo for the $2.00/unit difference.
 
 --------------------------------------------------------------------------------
 CASE: case_08
@@ -161,20 +159,24 @@ RAW RESULT:
 }
 
 AI EXPLANATION:
-Here is a summary of the audit finding for **Case case_08** (Status: **REVIEW_REQUIRED**):
+**Audit Review Summary: Case case_08**
+**Status:** REVIEW_REQUIRED
 
-### Issue Summary
-A unit price mismatch was detected between the invoice and the purchase order for **SKU 'SKU-801'**.
+---
 
-### Evidence & Details
-* **Item / SKU:** SKU-801
-* **Invoice Unit Price:** $230.00
-* **Purchase Order Unit Price:** $245.00
-* **Difference:** The vendor billed **$15.00 lower per unit** on the invoice than the agreed purchase order price.
+### **Issue Description**
+A unit price discrepancy was detected for item **SKU-801** between the vendor invoice and the corresponding purchase order:
 
-### Recommended Next Action
-1. **Verify with Purchasing / Vendor:** Confirm whether the lower unit price ($230.00) reflects an agreed-upon promotional discount, updated contract price, or vendor error.
-2. **Review & Approve Invoice:** Once verified, update the PO or approve the invoice at the lower price prior to releasing payment.
+* **Invoice Unit Price:** $230.00 (`invoice.items[0].unit_price`)
+* **Purchase Order Unit Price:** $245.00 (`purchase_order.items[0].unit_price`)
+
+The vendor invoiced this item at $230.00 per unit, which is **$15.00 lower** per unit than the agreed PO price of $245.00.
+
+---
+
+### **Recommended Next Actions**
+1. **Verify Discount/Contract:** Check with the buyer or purchasing team to confirm if a lower promotional price, volume discount, or contract update applies.
+2. **Confirm Acceptance:** If the lower price is valid, approve the invoice for payment and update the PO record to reflect the savings. If invalid, contact the vendor for clarification before payment approval.
 
 --------------------------------------------------------------------------------
 CASE: case_09
@@ -197,23 +199,25 @@ RAW RESULT:
 }
 
 AI EXPLANATION:
-**Invoice Audit Summary: Case case_09**
+**Audit Summary: Case 09**
 **Status:** REVIEW_REQUIRED
-
-### Issue Overview
-There is a line-item mismatch between the invoice and the purchase order (PO). Specifically, the invoice includes an item (**SKU-903**) that does not appear anywhere on the approved purchase order.
-
-### Audit Evidence
-* **Invoice Reference:** Line item 2 (`invoice.items[1].sku`) lists **SKU-903**.
-* **Purchase Order Reference:** **SKU-903** is missing from the approved PO line items (`purchase_order.items`).
-*(Note: Quantities and pricing for this item were not specified in the flagged audit log and should be verified directly on the invoice document.)*
 
 ---
 
-### Recommended Next Actions
-1. **Verify Receiving Records:** Check warehouse receiving logs to confirm whether **SKU-903** was physically received.
-2. **Contact the Vendor:** Reach out to the supplier to determine if this was an unapproved product substitution, an accidental extra shipment, or a billing error.
-3. **Hold Payment:** Pause invoice approval/payment until the item is either authorized via an updated PO change order or credited by the vendor.
+### **Issue Overview**
+An unapproved item was found on the invoice. Specifically, **SKU-903** (listed on line item 2 of the invoice) is not included on the corresponding Purchase Order (PO). As a result, this line item lacks prior approval and pricing authorization.
+
+### **Key Evidence**
+* **Invoice Reference:** `invoice.items[1]` (Line Item 2) lists **SKU-903**.
+* **Purchase Order Reference:** `purchase_order.items` contains no record of **SKU-903**.
+
+---
+
+### **Recommended Next Actions**
+1. **Verify Receiving Records:** Check with the warehouse or receiving team to confirm whether **SKU-903** was physically delivered and accepted.
+2. **Check for Item Substitutions:** Confirm whether **SKU-903** is an authorized substitute or updated part number for an item that *was* approved on the PO.
+3. **Contact the Vendor:** If the item was shipped/billed by mistake, request a revised invoice or a credit memo before approving payment.
+4. **Hold Payment:** Keep the invoice on hold until the discrepancy is resolved and proper approval or documentation is provided.
 
 --------------------------------------------------------------------------------
 CASE: case_10
@@ -243,27 +247,31 @@ RAW RESULT:
 }
 
 AI EXPLANATION:
-**Invoice Audit Summary: Case 'case_10'**
-**Status:** REVIEW_REQUIRED
+Here is a summary of the audit findings for **Case case_10** (Status: **REVIEW_REQUIRED**):
 
 ---
 
-### **Issue Overview**
-We have identified a discrepancy between the billed invoice and the receiving records. The vendor has invoiced us for **12 units** of item **SKU-1001**, but our warehouse records show **0 units** received, as the item list in the goods receipt is currently missing/unrecorded.
+### **Summary of Issues**
+
+1. **Missing Receiving Record**
+   * The goods receipt documentation is incomplete. The system could not find a line-item entry for received items (`goods_receipt.received_items`).
+
+2. **Quantity Mismatch (Billed vs. Received)**
+   * The invoice bills for **12.0 units** of **SKU 'SKU-1001'**, but the receiving record reflects **0 units** received.
 
 ---
 
-### **Key Audit Evidence**
-* **Item Code (SKU):** `SKU-1001`
-* **Invoiced Quantity:** 12.0 units
-* **Received Quantity:** 0 units
-* **System Finding:** Missing receiving log entry (`goods_receipt.received_items`) and a quantity mismatch (`QTY_MISMATCH`).
+### **Key Evidence**
+* **SKU:** `SKU-1001`
+* **Invoiced Quantity:** `12.0` (`invoice.items[0].quantity`)
+* **Received Quantity:** `0` (`goods_receipt.received_items[0].quantity`)
 
 ---
 
 ### **Recommended Next Actions**
-1. **Hold Payment:** Pause invoice approval until receiving details are clarified.
-2. **Verify Warehouse Records:** Check with the receiving/warehouse team to confirm if SKU-1001 was physically received but not logged in the system.
-3. **Contact Vendor (if needed):** If the shipment was not received or was incomplete, contact the vendor to request a revised invoice or proof of delivery.
+
+1. **Verify Receiving Logs:** Contact the warehouse/receiving team to confirm whether the 12 units of SKU-1001 were physically delivered and simply omitted from the receiving system entry.
+2. **Hold Payment:** Place a temporary hold on invoice payment until the receiving record is updated or verified.
+3. **Contact Vendor (if unreceived):** If the items were not delivered, reach out to the vendor to request an updated invoice or a credit memo for the missing items.
 
 --------------------------------------------------------------------------------
