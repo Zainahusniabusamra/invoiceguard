@@ -141,7 +141,7 @@ The six review cases cover:
 Automated tests:
 
 ```text
-Ran 8 tests
+Ran 9 tests
 OK
 ```
 
@@ -167,6 +167,8 @@ The comparison results are generated automatically in:
 ```text
 results/comparison_table.md
 ```
+
+> Note: Actionability Rate is a heuristic metric based on the presence of human-action keywords in generated explanations; it is not an independent semantic quality judgment.
 
 ## Improvement Changelog
 
@@ -203,6 +205,14 @@ results/comparison_table.md
 **Decision:** Measure the difference between the baseline and AI-assisted solution using actionability and explanation coverage.
 
 **Result:** All 6 review cases received a clear next action, compared with 0/10 baseline cases.
+
+### Iteration 5 — Final Validation Polish
+
+**Change:** Corrected missing receiving-data handling, added document identity checks for PO IDs, vendors, and currencies, and changed generated result paths to portable repository-relative paths.
+
+**Evidence:** The final suite passed 9 tests. The 10 demo cases remained 4 MATCHED and 6 REVIEW_REQUIRED. case_10 now reports MISSING_FIELD only, and result paths are portable.
+
+**Decision:** Keep these safeguards in the final prototype because they improve correctness and reproducibility without changing the core architecture.
 
 ## Example
 

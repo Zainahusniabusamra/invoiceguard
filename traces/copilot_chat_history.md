@@ -1324,6 +1324,42 @@ The separator line is being replaced with case data! It shows `-CASE: case_05` i
 
 Searched for text `replace|sub|gsub|regex|match` (`**/invoiceguard/src/agent.py`), 9 results
 
+---
+
+# Gemini Agent Representative Trajectory
+
+## Agent Role
+Gemini is used as an explanation and decision-support agent. It does not decide whether an invoice is financially correct and it does not approve or reject payment.
+
+## Input
+The agent receives a structured REVIEW_REQUIRED finding produced by the deterministic baseline, for example results/case_05.json.
+
+Example evidence:
+- Issue code: QTY_MISMATCH
+- SKU: SKU-501
+- Invoiced quantity: 4.0
+- Received quantity: 2.0
+- Evidence paths: invoice.items[0].quantity and goods_receipt.received_items[0].quantity
+
+## Agent Instruction
+Explain the finding in plain language for a finance manager, reference concrete evidence from the finding, explain why it matters, and recommend a practical next action such as verifying receiving records or contacting the vendor.
+
+## Agent Output
+The generated explanation described that 4.0 units of SKU-501 were invoiced while only 2.0 units were recorded as received. It recommended verifying the warehouse receiving records and contacting the vendor if the additional units were not delivered.
+
+## Validation
+The Validator checked whether the explanation referenced concrete evidence from the original finding. Because it referenced SKU-501, 4.0 units, and 2.0 units, the explanation was accepted.
+
+If the API fails or the explanation does not reference the finding evidence, the system returns:
+
+Insufficient evidence — human review required
+
+and the explanation is rejected rather than being included as a trusted AI conclusion.
+
+## Human Checkpoint
+The final decision remains with a qualified finance reviewer. InvoiceGuard only highlights discrepancies, explains the evidence, and suggests next steps. It never approves payment automatically.
+
+
 Read [](), lines 130 to 210
 
 Let me check what `_run_all_cases()` is actually returning - maybe the result dict is huge:  
