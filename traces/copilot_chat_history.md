@@ -1773,3 +1773,36 @@ The validator now correctly:
 3. **Accepts** only explanations that reference concrete evidence from the finding
 
 Made changes.
+
+
+
+
+---
+
+# Final Polish Session — 30 August 2026
+
+## Objective
+Applied the final polishing fixes to InvoiceGuard without rebuilding the project.
+
+## Fixes Applied
+
+1. Fixed the missing `goods_receipt.received_items` behavior so missing receiving data is not treated as received quantity zero.
+2. Added deterministic document identity validation for `po_id`, `vendor`, and `currency`.
+3. Changed generated result paths to portable repository-relative paths.
+4. Added a regression test for `DOCUMENT_IDENTITY_MISMATCH`.
+5. Removed trailing whitespace from the generated report.
+
+## Verification
+
+The final verification completed successfully:
+
+- 9 tests passed.
+- 4 cases were `MATCHED`.
+- 6 cases were `REVIEW_REQUIRED`.
+- `case_10` contains `MISSING_FIELD` only.
+- Result paths are relative, such as `results/case_01.json`.
+- `git diff --check` passed.
+
+## Git Delivery
+
+The code changes were committed and pushed to the `main` branch in commit `3e2a1e7`. This session log was documented afterward and will be committed separately.
